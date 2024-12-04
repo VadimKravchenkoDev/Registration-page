@@ -1,4 +1,4 @@
-gitpackage com.example.registrationpage;
+package com.example.registrationpage;
 
 import android.os.Bundle;
 
