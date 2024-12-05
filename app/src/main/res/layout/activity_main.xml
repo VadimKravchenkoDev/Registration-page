@@ -11,8 +11,8 @@
     <!--Gradient background -->
     <View
         android:id="@+id/gradient_background"
-        android:layout_width="@dimen/view_diameter"
-        android:layout_height="@dimen/view_diameter"
+        android:layout_width="@dimen/background_view_diameter"
+        android:layout_height="@dimen/background_view_diameter"
         android:background="@drawable/gradient_circle"
         app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintLeft_toLeftOf="@+id/button"
@@ -30,9 +30,20 @@
         android:textSize="@dimen/button_textSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="@dimen/button_horizontal_bias"
+        app:layout_constraintVertical_bias="@dimen/button_vertical_bias"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748" />
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
