@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Registration page</string>
-    <string name="button">Continue ></string>
+    <string name="registration_button">Continue ></string>
 </resources>
