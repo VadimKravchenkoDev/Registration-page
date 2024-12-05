@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="background_view_diameter">350dp</dimen>
+    <dimen name="button_width">200dp</dimen>
+    <dimen name="button_height">50dp</dimen>
+    <dimen name="button_textSize">25sp</dimen>
+    <item name="button_horizontal_bias" format="float" type="dimen">0.5</item>
+    <item name="button_vertical_bias" format="float" type="dimen">0.8</item>
+
+
+
+
+
+</resources>
