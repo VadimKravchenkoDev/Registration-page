@@ -29,9 +29,9 @@ private RegistrationViewModel registrationViewModel;
         });
         registrationViewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
         binding.buttonContinue.setOnClickListener(v -> {
-            String nameEditText = binding.editTextName.toString();
-            String surnameEditText = binding.editTextSername.toString();
-            String passwordEditText = binding.editTextPassword.toString();
+            String nameEditText = binding.editTextName.getText().toString();
+            String surnameEditText = binding.editTextSername.getText().toString();
+            String passwordEditText = binding.editTextPassword.getText().toString();
             if(!RegistrationValidator.areFieldsValid(nameEditText, surnameEditText, passwordEditText)){
                 String errorMessage = RegistrationValidator.getErrorMessage(nameEditText, surnameEditText, passwordEditText);
                 Toast.makeText(this, errorMessage,Toast.LENGTH_LONG).show();
