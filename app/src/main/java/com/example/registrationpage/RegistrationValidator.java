@@ -2,8 +2,7 @@ package com.example.registrationpage;
 
 public class RegistrationValidator {
     public static boolean areFieldsValid(String name, String surname, String password) {
-        return !(name.isEmpty() || surname.isEmpty() || password.isEmpty()) {
-        }
+        return !(name.isEmpty() || surname.isEmpty() || password.isEmpty());
     }
 
     public static String getErrorMessage(String name, String surname, String password) {
