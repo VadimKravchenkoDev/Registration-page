@@ -9,11 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.registrationpage.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 private ActivityMainBinding binding;
+private RegistrationViewModel registrationViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,16 +27,21 @@ private ActivityMainBinding binding;
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        String nameEditText = binding.editTextName.toString();
-        String surnameEditText = binding.editTextSername.toString();
-        String passwordEditText = binding.editTextPassword.toString();
+        registrationViewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
+        binding.buttonContinue.setOnClickListener(v -> {
+            String nameEditText = binding.editTextName.toString();
+            String surnameEditText = binding.editTextSername.toString();
+            String passwordEditText = binding.editTextPassword.toString();
+            if(!RegistrationValidator.areFieldsValid(nameEditText, surnameEditText, passwordEditText)){
+                String errorMessage = RegistrationValidator.getErrorMessage(nameEditText, surnameEditText, passwordEditText);
+                Toast.makeText(this, errorMessage,Toast.LENGTH_LONG).show();
+            } else {
+                registrationViewModel.setRegistrationDate(nameEditText, surnameEditText, passwordEditText);
+            }
+        });
 
-        if(!RegistrationValidator.areFieldsValid(nameEditText, surnameEditText, passwordEditText)){
-            String errorMessage = RegistrationValidator.getErrorMessage(nameEditText, surnameEditText, passwordEditText);
-            Toast.makeText(this, errorMessage,Toast.LENGTH_LONG).show();
-        } else {
-            //my logic
-        }
+
+
 
     }
     @Override
