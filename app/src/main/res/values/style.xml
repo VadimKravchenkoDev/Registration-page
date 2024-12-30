@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="input_text">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/input_text_size</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:ems">12</item>
+    </style>
+    <style name="text_style">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/input_text_size</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+</resources>
