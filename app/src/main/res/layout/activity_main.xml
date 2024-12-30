@@ -13,8 +13,8 @@
         android:id="@+id/imageView_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/image_margin"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@+id/editText_name"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/fox" />
 
@@ -33,7 +33,7 @@
     <!--Name block -->
     <TextView
         android:id="@+id/textView_name"
-        style="@style/input_text"
+        style="@style/text_style"
         android:layout_marginTop="@dimen/input_text_margin"
         android:text="@string/name"
         app:layout_constraintStart_toStartOf="@+id/textView_sign_up"
@@ -44,13 +44,12 @@
         style="@style/input_text"
         android:inputType="text"
         android:hint="@string/hint_name"
-        app:layout_constraintStart_toStartOf="@+id/textView_name"
         app:layout_constraintTop_toBottomOf="@+id/textView_name" />
 
     <!--Surname block -->
     <TextView
         android:id="@+id/textView_surname"
-        style="@style/input_text"
+        style="@style/text_style"
         android:layout_marginTop="@dimen/input_text_margin"
         android:text="@string/surname"
         app:layout_constraintStart_toStartOf="@+id/editText_name"
@@ -61,13 +60,12 @@
         style="@style/input_text"
         android:inputType="text"
         android:hint="@string/hint_surname"
-        app:layout_constraintStart_toStartOf="@+id/textView_surname"
         app:layout_constraintTop_toBottomOf="@+id/textView_surname" />
 
     <!--Password block -->
     <TextView
         android:id="@+id/textView_password"
-        style="@style/input_text"
+        style="@style/text_style"
         android:layout_marginTop="@dimen/input_text_margin"
         android:text="@string/password"
         app:layout_constraintStart_toStartOf="@+id/editText_sername"
@@ -76,9 +74,8 @@
     <EditText
         android:id="@+id/editText_password"
         style="@style/input_text"
-        android:inputType="text"
         android:hint="@string/hint_password"
-        app:layout_constraintStart_toStartOf="@+id/textView_password"
+        android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@+id/textView_password" />
 
     <!--Gradient background -->
@@ -103,13 +100,33 @@
         android:textSize="@dimen/button_textSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="@dimen/button_horizontal_bias"
         app:layout_constraintVertical_bias="@dimen/button_vertical_bias"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <ImageView
+        android:id="@+id/image_open_eye"
+        android:layout_width="38dp"
+        android:layout_height="31dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_password"
+        app:layout_constraintEnd_toEndOf="@+id/editText_password"
+        app:layout_constraintTop_toTopOf="@+id/editText_password"
+        android:layout_marginRight="10dp"
+        app:srcCompat="@drawable/open_eye" />
 
+    <ImageView
+        android:id="@+id/image_close_eye"
+        android:layout_width="38dp"
+        android:layout_height="31dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_password"
+        app:layout_constraintEnd_toEndOf="@+id/editText_password"
+        app:layout_constraintTop_toTopOf="@+id/editText_password"
+        android:layout_marginRight="10dp"
+        app:srcCompat="@drawable/close_eye"
+        android:visibility="invisible"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
