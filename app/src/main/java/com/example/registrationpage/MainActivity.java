@@ -1,6 +1,8 @@
 package com.example.registrationpage;
 
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +25,16 @@ private ActivityMainBinding binding;
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        String nameEditText = binding.editTextName.toString();
+        String surnameEditText = binding.editTextSername.toString();
+        String passwordEditText = binding.editTextPassword.toString();
+
+        if(!RegistrationValidator.areFieldsValid(nameEditText, surnameEditText, passwordEditText)){
+            String errorMessage = RegistrationValidator.getErrorMessage(nameEditText, surnameEditText, passwordEditText);
+            Toast.makeText(this, errorMessage,Toast.LENGTH_LONG).show();
+        } else {
+            //my logic
+        }
 
     }
     @Override

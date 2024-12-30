@@ -13,11 +13,38 @@ public class RegistrationData {
     }
 
     public void setName(String name){
-        if (name == null || name.isEmpty()){
-            throw new IllegalArgumentException("Name cannot be empty");
-        }
         this.name = name;
     }
 
+    public String getSurname(){
+        return surname;
+    }
 
+    public void setSurname(String surname){
+        this.surname = surname;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public boolean isOver18(){
+        return isOver18;
+    }
+
+    public void setOver18(boolean over18){
+        isOver18 = over18;
+    }
+
+    public boolean isPasswordVisible(){
+        return isPasswordVisible;
+    }
+
+    public void setPasswordVisible(boolean passwordVisible){
+        isPasswordVisible = passwordVisible;
+    }
 }
