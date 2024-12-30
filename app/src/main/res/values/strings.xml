@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Registration page</string>
     <string name="registration_button">Continue ></string>
+    <string name="sign_up">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="hint_name">Enter your name</string>
+    <string name="surname">Surname</string>
+    <string name="hint_surname">Enter your surname</string>
+    <string name="password">Password</string>
+    <string name="hint_password">Enter your password</string>
+
 </resources>
