@@ -6,13 +6,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class RegistrationViewModelFactory implements ViewModelProvider.Factory {
 
-
-
-    @NonNull
     @Override
-    public <T extends ViewModel> T create(@NonNull Class<T> modelClass){
-        if(modelClass.isAssignableFrom(ViewModel.class)){
-            return
-        }
+    public <T extends ViewModel> T create(Class<T> modelClass) {
+        return (T) new RegistrationViewModel();
     }
 }
