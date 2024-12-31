@@ -1,6 +1,7 @@
 package com.example.registrationpage;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -14,8 +15,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.registrationpage.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-private ActivityMainBinding binding;
-private RegistrationViewModel registrationViewModel;
+    private ActivityMainBinding binding;
+    private RegistrationViewModel registrationViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,24 +30,30 @@ private RegistrationViewModel registrationViewModel;
             return insets;
         });
         registrationViewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
+        RegistrationData registrationData = new RegistrationData(registrationViewModel);
+
+        registrationViewModel.getIsImageVisible().observe(this,isVisible -> {
+            binding.imageCloseEye.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+            binding.imageOpenEye.setVisibility(isVisible ? View.GONE : View.VISIBLE);
+        });
+        binding.imageCloseEye.setOnClickListener(v-> registrationData.onImageClick());
+        binding.imageOpenEye.setOnClickListener(v-> registrationData.onImageClick());
+
         binding.buttonContinue.setOnClickListener(v -> {
-            String nameEditText = binding.editTextName.getText().toString();
-            String surnameEditText = binding.editTextSername.getText().toString();
-            String passwordEditText = binding.editTextPassword.getText().toString();
-            if(!RegistrationValidator.areFieldsValid(nameEditText, surnameEditText, passwordEditText)){
-                String errorMessage = RegistrationValidator.getErrorMessage(nameEditText, surnameEditText, passwordEditText);
-                Toast.makeText(this, errorMessage,Toast.LENGTH_LONG).show();
+            String name = binding.editTextName.getText().toString();
+            String surname = binding.editTextSername.getText().toString();
+            String password = binding.editTextPassword.getText().toString();
+            if (!RegistrationValidator.areFieldsValid(name, surname, password)) {
+                String errorMessage = RegistrationValidator.getErrorMessage(name, surname, password);
+                Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
             } else {
-                registrationViewModel.setRegistrationDate(nameEditText, surnameEditText, passwordEditText);
+                registrationViewModel.setRegistrationDate(name, surname, password);
             }
         });
-
-
-
-
     }
+
     @Override
-    protected void onDestroy(){
+    protected void onDestroy() {
         super.onDestroy();
         binding = null;
     }
