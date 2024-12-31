@@ -19,7 +19,7 @@ public class RegistrationViewModel extends androidx.lifecycle.ViewModel {
 
     public void toggleImageVisibility(){
         Boolean currentState = isImageVisible.getValue();
-        isImageVisible.setValue(currentState == null || !currentState);
+        isImageVisible.setValue(!currentState);
     }
 
     public void setRegistrationDate(String name, String surname, String password) {
