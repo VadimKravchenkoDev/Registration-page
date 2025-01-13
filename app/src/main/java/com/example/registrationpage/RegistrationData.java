@@ -9,13 +9,14 @@ public class RegistrationData {
     private boolean isPasswordVisible = false;
 
 
-    public RegistrationData(RegistrationViewModel viewModel){
+    public RegistrationData(RegistrationViewModel viewModel) {
         this.viewModel = viewModel;
     }
 
-    public void onImageClick(){
+    public void onImageClick() {
         viewModel.toggleImageVisibility();
     }
+
     //Getters and Setters
     public String getName() {
         return name;
@@ -47,18 +48,5 @@ public class RegistrationData {
 
     public void setOver18(boolean over18) {
         isOver18 = over18;
-    }
-
-    public boolean isPasswordVisible() {
-        if(isPasswordVisible){
-            isPasswordVisible = false;
-        } else {
-            isPasswordVisible = true;
-        }
-        return isPasswordVisible;
-    }
-
-    public void setPasswordVisible(boolean passwordVisible) {
-        isPasswordVisible = passwordVisible;
     }
 }

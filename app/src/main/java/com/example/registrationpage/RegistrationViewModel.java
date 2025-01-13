@@ -7,7 +7,7 @@ public class RegistrationViewModel extends androidx.lifecycle.ViewModel {
 
     private final MutableLiveData<RegistrationData> registrationDate = new MutableLiveData<>(new RegistrationData(this));
 
-    private final MutableLiveData<Boolean> isImageVisible = new MutableLiveData<>(true);
+    private final MutableLiveData<Boolean> isImageVisible = new MutableLiveData<>(false);
 
     public LiveData<RegistrationData> getRegistrationData() {
         return registrationDate;

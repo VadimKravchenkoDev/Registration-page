@@ -1,6 +1,7 @@
 package com.example.registrationpage;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -29,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        registrationViewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
+        RegistrationViewModelFactory factory = new RegistrationViewModelFactory(getApplicationContext());
+        registrationViewModel = new ViewModelProvider(this,factory).get(RegistrationViewModel.class);
         RegistrationData registrationData = new RegistrationData(registrationViewModel);
 
         registrationViewModel.getIsImageVisible().observe(this,isVisible -> {
             binding.imageCloseEye.setVisibility(isVisible ? View.VISIBLE : View.GONE);
             binding.imageOpenEye.setVisibility(isVisible ? View.GONE : View.VISIBLE);
+            binding.editTextPassword.setInputType(isVisible? InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD :InputType.TYPE_CLASS_TEXT| InputType.TYPE_TEXT_VARIATION_PASSWORD);
         });
         binding.imageCloseEye.setOnClickListener(v-> registrationData.onImageClick());
         binding.imageOpenEye.setOnClickListener(v-> registrationData.onImageClick());
