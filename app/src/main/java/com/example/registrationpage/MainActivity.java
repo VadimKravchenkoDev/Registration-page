@@ -31,16 +31,18 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         RegistrationViewModelFactory factory = new RegistrationViewModelFactory(getApplicationContext());
-        registrationViewModel = new ViewModelProvider(this,factory).get(RegistrationViewModel.class);
+        registrationViewModel = new ViewModelProvider(this, factory).get(RegistrationViewModel.class);
         RegistrationData registrationData = new RegistrationData(registrationViewModel);
 
-        registrationViewModel.getIsImageVisible().observe(this,isVisible -> {
+        registrationViewModel.getIsImageVisible().observe(this, isVisible -> {
             binding.imageCloseEye.setVisibility(isVisible ? View.VISIBLE : View.GONE);
             binding.imageOpenEye.setVisibility(isVisible ? View.GONE : View.VISIBLE);
-            binding.editTextPassword.setInputType(isVisible? InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD :InputType.TYPE_CLASS_TEXT| InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            binding.editTextPassword.setInputType(isVisible ?
+                    InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD :
+                    InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         });
-        binding.imageCloseEye.setOnClickListener(v-> registrationData.onImageClick());
-        binding.imageOpenEye.setOnClickListener(v-> registrationData.onImageClick());
+        binding.imageCloseEye.setOnClickListener(v -> registrationData.onImageClick());
+        binding.imageOpenEye.setOnClickListener(v -> registrationData.onImageClick());
 
         binding.buttonContinue.setOnClickListener(v -> {
             String name = binding.editTextName.getText().toString();
