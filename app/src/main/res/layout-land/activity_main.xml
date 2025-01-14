@@ -10,6 +10,8 @@
     android:scrollbars="vertical"
     tools:context=".MainActivity">
 
+    <!--Fox drawing -->
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="0dp"
@@ -17,10 +19,11 @@
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"></FrameLayout>
 
-    <!--Fox drawing -->
     <ImageView
         android:id="@+id/imageView_main"
         android:layout_width="wrap_content"

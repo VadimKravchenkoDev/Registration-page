@@ -2,6 +2,7 @@ package com.example.registrationpage;
 
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.example.registrationpage.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private RegistrationViewModel registrationViewModel;
+    ParentFragment parentFragment = new ParentFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
             } else {
                 registrationViewModel.setRegistrationDate(name, surname, password);
-
+                Log.d("MainActivity", "add data");
+                setNewFragment(parentFragment);
             }
         });
     }
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setNewFragment(Fragment fragment){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Log.d("MainActivity", "Replacing fragment...");
         ft.replace(R.id.frameLayout,fragment);
         ft.addToBackStack(null);
         ft.commit();
