@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
             binding.editTextPassword.setInputType(isVisible ?
                     InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD :
                     InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            binding.editTextPassword.setTypeface(ResourcesCompat.getFont(this, R.font.roboto));
         });
         binding.imageCloseEye.setOnClickListener(v -> registrationData.onImageClick());
         binding.imageOpenEye.setOnClickListener(v -> registrationData.onImageClick());

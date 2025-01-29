@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/fox" />
@@ -63,6 +63,8 @@
 
     <!--Surname block -->
 
+    <!--Password block -->
+
     <EditText
         android:id="@+id/editText_name"
         style="@style/input_text"
@@ -71,18 +73,20 @@
         android:layout_marginTop="8dp"
         android:hint="@string/hint_name"
         android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/textView_name"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView_name"
         app:layout_constraintTop_toBottomOf="@+id/textView_name" />
 
     <TextView
         android:id="@+id/textView_surname"
         style="@style/text_style"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
         android:text="@string/surname"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_name" />
+        app:layout_constraintStart_toEndOf="@+id/editText_name"
+        app:layout_constraintTop_toBottomOf="@+id/textView_sign_up" />
 
-    <!--Password block -->
+    <!--Gradient background -->
 
     <EditText
         android:id="@+id/editText_sername"
@@ -90,24 +94,22 @@
         android:layout_marginTop="8dp"
         android:hint="@string/hint_surname"
         android:inputType="text"
-        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintEnd_toEndOf="@+id/textView_surname"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView_surname"
         app:layout_constraintTop_toBottomOf="@+id/textView_surname" />
 
     <TextView
         android:id="@+id/textView_password"
         style="@style/text_style"
-        android:layout_marginEnd="284dp"
         android:text="@string/password"
-        app:layout_constraintEnd_toStartOf="@+id/gradient_background"
-        app:layout_constraintStart_toStartOf="@+id/editText_sername"
-        app:layout_constraintTop_toBottomOf="@+id/editText_sername" />
-
-    <!--Gradient background -->
+        app:layout_constraintStart_toStartOf="@+id/editText_name"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name" />
 
     <EditText
         android:id="@+id/editText_password"
         style="@style/input_text"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
         app:layout_constraintHorizontal_bias="0.0"
@@ -116,28 +118,19 @@
 
     <!--Button Continue -->
 
-    <View
-        android:id="@+id/gradient_background"
-        android:layout_width="@dimen/background_view_diameter"
-        android:layout_height="@dimen/background_view_diameter"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="45dp"
-        android:background="@drawable/gradient_circle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/button_continue"
-        android:layout_width="@dimen/button_width"
+        android:layout_width="0dp"
         android:layout_height="@dimen/button_height"
-        android:layout_marginTop="168dp"
-        android:layout_marginEnd="68dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/poppins"
         android:text="@string/registration_button"
         android:textSize="@dimen/button_textSize"
-        app:layout_constraintEnd_toEndOf="@+id/gradient_background"
-        app:layout_constraintTop_toTopOf="@+id/gradient_background" />
+        app:layout_constraintEnd_toEndOf="@+id/editText_sername"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText_sername"
+        app:layout_constraintTop_toBottomOf="@+id/editText_sername" />
 
     <ImageView
         android:id="@+id/image_open_eye"

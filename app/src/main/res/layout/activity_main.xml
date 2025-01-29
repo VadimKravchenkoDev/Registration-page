@@ -15,6 +15,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:elevation="10dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,35 +89,37 @@
         style="@style/input_text"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/textView_password" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_password"
+        />
 
     <!--Gradient background -->
+
+    <!--Button Continue -->
     <View
         android:id="@+id/gradient_background"
         android:layout_width="@dimen/background_view_diameter"
         android:layout_height="@dimen/background_view_diameter"
         android:background="@drawable/gradient_circle"
         app:layout_constraintBottom_toBottomOf="@+id/button_continue"
-        app:layout_constraintLeft_toLeftOf="@+id/button_continue"
-        app:layout_constraintRight_toRightOf="@+id/button_continue"
-        app:layout_constraintTop_toTopOf="@+id/button_continue" />
+        app:layout_constraintEnd_toEndOf="@+id/button_continue"
+        app:layout_constraintStart_toStartOf="@+id/button_continue"
+        app:layout_constraintTop_toTopOf="@+id/button_continue"
+        app:layout_constraintVertical_bias="0.52" />
 
-    <!--Button Continue -->
     <Button
         android:id="@+id/button_continue"
-        android:layout_width="@dimen/button_width"
+        android:layout_width="0dp"
         android:layout_height="@dimen/button_height"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/poppins"
         android:text="@string/registration_button"
         android:textSize="@dimen/button_textSize"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editText_password"
         app:layout_constraintHorizontal_bias="@dimen/button_horizontal_bias"
-        app:layout_constraintVertical_bias="@dimen/button_vertical_bias"
+        app:layout_constraintStart_toStartOf="@+id/editText_password"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintVertical_bias="@dimen/button_vertical_bias" />
 
     <ImageView
         android:id="@+id/image_open_eye"
