@@ -1,9 +1,11 @@
 package com.example.registrationpage;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -54,9 +56,16 @@ public class MainActivity extends AppCompatActivity {
             String surname = binding.editTextSername.getText().toString();
             String password = binding.editTextPassword.getText().toString();
             if (!RegistrationValidator.areFieldsValid(name, surname, password)) {
-                String errorMessage = RegistrationValidator.getErrorMessage(name, surname, password);
-                //переробити тоаст ---g
-                Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+                String errorMessage = RegistrationValidator.getErrorMessage(MainActivity.this, name, surname, password);
+
+                Toast toast = new Toast(this);
+                View toastView = getLayoutInflater().inflate(R.layout.custom_toast, null);
+                TextView textView = toastView.findViewById(R.id.custom_toast_message);
+                textView.setText(errorMessage);
+                toast.setView(toastView);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.show();
+                
             } else {
                 registrationViewModel.setRegistrationDate(name, surname, password);
                 Log.d("MainActivity", "add data");
