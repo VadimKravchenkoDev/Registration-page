@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             String password = binding.editTextPassword.getText().toString();
             if (!RegistrationValidator.areFieldsValid(name, surname, password)) {
                 String errorMessage = RegistrationValidator.getErrorMessage(name, surname, password);
-                //переробити тоаст
+                //переробити тоаст ---g
                 Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
             } else {
                 registrationViewModel.setRegistrationDate(name, surname, password);
