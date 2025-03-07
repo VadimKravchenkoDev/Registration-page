@@ -12,6 +12,9 @@ public class RegistrationValidator {
         if (name.isEmpty()||surname.isEmpty()||password.isEmpty()) {
             return context.getString(R.string.error_message);
         }
+        if (name.isEmpty()){
+
+        }
         return null;
     }
 }

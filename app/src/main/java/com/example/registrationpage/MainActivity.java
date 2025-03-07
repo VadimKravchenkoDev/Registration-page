@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -51,12 +52,46 @@ public class MainActivity extends AppCompatActivity {
         binding.imageCloseEye.setOnClickListener(v -> registrationData.onImageClick());
         binding.imageOpenEye.setOnClickListener(v -> registrationData.onImageClick());
 
+        binding.editTextName.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                binding.editTextName.setTextColor(ContextCompat.getColor(this, R.color.black));
+            }
+        });
+
+        binding.editTextSername.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                binding.editTextSername.setTextColor(ContextCompat.getColor(this, R.color.black));
+            }
+        });
+
+        binding.editTextPassword.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                binding.editTextPassword.setTextColor(ContextCompat.getColor(this, R.color.black));
+            }
+        });
+
         binding.buttonContinue.setOnClickListener(clickContinue -> {
             String name = binding.editTextName.getText().toString();
             String surname = binding.editTextSername.getText().toString();
             String password = binding.editTextPassword.getText().toString();
             if (!RegistrationValidator.areFieldsValid(name, surname, password)) {
                 String errorMessage = RegistrationValidator.getErrorMessage(MainActivity.this, name, surname, password);
+
+                if (name.isEmpty()||name.equals("name")) {
+                    binding.editTextName.setText("name");
+                    binding.editTextName.setTextColor(ContextCompat.getColor(this, R.color.red));
+                }
+
+                if (surname.isEmpty()||surname.equals("surname")) {
+                    binding.editTextSername.setText("surname");
+                    binding.editTextSername.setTextColor(ContextCompat.getColor(this, R.color.red));
+                }
+
+                if (password.isEmpty()||password.equals("password")) {
+                    binding.editTextPassword.setText("password");
+                    binding.editTextPassword.setTextColor(ContextCompat.getColor(this, R.color.red));
+                    binding.editTextPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                }
 
                 Toast toast = new Toast(this);
                 View toastView = getLayoutInflater().inflate(R.layout.custom_toast, null);
@@ -65,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 toast.setView(toastView);
                 toast.setDuration(Toast.LENGTH_LONG);
                 toast.show();
-                
+
             } else {
                 registrationViewModel.setRegistrationDate(name, surname, password);
                 Log.d("MainActivity", "add data");
@@ -80,10 +115,10 @@ public class MainActivity extends AppCompatActivity {
         binding = null;
     }
 
-    private void setNewFragment(Fragment fragment){
+    private void setNewFragment(Fragment fragment) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Log.d("MainActivity", "Replacing fragment...");
-        ft.replace(R.id.frameLayout,fragment);
+        ft.replace(R.id.frameLayout, fragment);
         ft.addToBackStack(null);
         ft.commit();
     }
