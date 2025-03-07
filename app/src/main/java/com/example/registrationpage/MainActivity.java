@@ -55,18 +55,21 @@ public class MainActivity extends AppCompatActivity {
         binding.editTextName.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.editTextName.setTextColor(ContextCompat.getColor(this, R.color.black));
+                if(binding.editTextName.getText().toString().equals("name")){binding.editTextName.setText("");}
             }
         });
 
         binding.editTextSername.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.editTextSername.setTextColor(ContextCompat.getColor(this, R.color.black));
+                if(binding.editTextSername.getText().toString().equals("surname")){binding.editTextSername.setText("");}
             }
         });
 
         binding.editTextPassword.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.editTextPassword.setTextColor(ContextCompat.getColor(this, R.color.black));
+                if(binding.editTextPassword.getText().toString().equals("password")){binding.editTextPassword.setText("");}
             }
         });
 
@@ -77,17 +80,17 @@ public class MainActivity extends AppCompatActivity {
             if (!RegistrationValidator.areFieldsValid(name, surname, password)) {
                 String errorMessage = RegistrationValidator.getErrorMessage(MainActivity.this, name, surname, password);
 
-                if (name.isEmpty()||name.equals("name")) {
+                if (name.isEmpty()) {
                     binding.editTextName.setText("name");
                     binding.editTextName.setTextColor(ContextCompat.getColor(this, R.color.red));
                 }
 
-                if (surname.isEmpty()||surname.equals("surname")) {
+                if (surname.isEmpty()) {
                     binding.editTextSername.setText("surname");
                     binding.editTextSername.setTextColor(ContextCompat.getColor(this, R.color.red));
                 }
 
-                if (password.isEmpty()||password.equals("password")) {
+                if (password.isEmpty()) {
                     binding.editTextPassword.setText("password");
                     binding.editTextPassword.setTextColor(ContextCompat.getColor(this, R.color.red));
                     binding.editTextPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
