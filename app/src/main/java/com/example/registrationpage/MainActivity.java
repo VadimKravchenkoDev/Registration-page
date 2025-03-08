@@ -2,7 +2,9 @@ package com.example.registrationpage;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -52,12 +54,32 @@ public class MainActivity extends AppCompatActivity {
         binding.imageCloseEye.setOnClickListener(v -> registrationData.onImageClick());
         binding.imageOpenEye.setOnClickListener(v -> registrationData.onImageClick());
 
-        binding.editTextName.setOnFocusChangeListener((v, hasFocus) -> {
+        /*binding.editTextName.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.editTextName.setTextColor(ContextCompat.getColor(this, R.color.black));
                 if(binding.editTextName.getText().toString().equals("name")){binding.editTextName.setText("");}
             }
+        });*/
+
+        binding.editTextName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                binding.editTextName.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.black));
+                if(binding.editTextName.getText().toString().equals("name")){binding.editTextName.setText("");}
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
         });
+
 
         binding.editTextSername.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
