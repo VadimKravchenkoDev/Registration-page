@@ -2,9 +2,12 @@ package com.example.registrationpage;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +40,25 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                checkFieldsAndToggleCheckmark();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        };
+
+        // Назначаем TextWatcher всем трём полям
+        binding.editTextName.addTextChangedListener(textWatcher);
+        binding.editTextSername.addTextChangedListener(textWatcher);
+        binding.editTextPassword.addTextChangedListener(textWatcher);
+
+
         RegistrationViewModelFactory factory = new RegistrationViewModelFactory(getApplicationContext());
         registrationViewModel = new ViewModelProvider(this, factory).get(RegistrationViewModel.class);
         RegistrationData registrationData = new RegistrationData(registrationViewModel);
@@ -55,21 +77,21 @@ public class MainActivity extends AppCompatActivity {
         binding.editTextName.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.editTextName.setTextColor(ContextCompat.getColor(this, R.color.black));
-                if(binding.editTextName.getText().toString().equals("name")){binding.editTextName.setText("");}
+                if(binding.editTextName.getText().toString().equals(getString(R.string.name))){binding.editTextName.setText("");}
             }
         });
 
         binding.editTextSername.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.editTextSername.setTextColor(ContextCompat.getColor(this, R.color.black));
-                if(binding.editTextSername.getText().toString().equals("surname")){binding.editTextSername.setText("");}
+                if(binding.editTextSername.getText().toString().equals(getString(R.string.surname))){binding.editTextSername.setText("");}
             }
         });
 
         binding.editTextPassword.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.editTextPassword.setTextColor(ContextCompat.getColor(this, R.color.black));
-                if(binding.editTextPassword.getText().toString().equals("password")){binding.editTextPassword.setText("");}
+                if(binding.editTextPassword.getText().toString().equals(getString(R.string.password))){binding.editTextPassword.setText("");}
             }
         });
 
@@ -81,17 +103,17 @@ public class MainActivity extends AppCompatActivity {
                 String errorMessage = RegistrationValidator.getErrorMessage(MainActivity.this, name, surname, password);
 
                 if (name.isEmpty()) {
-                    binding.editTextName.setText("name");
+                    binding.editTextName.setText(R.string.name);
                     binding.editTextName.setTextColor(ContextCompat.getColor(this, R.color.red));
                 }
 
                 if (surname.isEmpty()) {
-                    binding.editTextSername.setText("surname");
+                    binding.editTextSername.setText(R.string.surname);
                     binding.editTextSername.setTextColor(ContextCompat.getColor(this, R.color.red));
                 }
 
                 if (password.isEmpty()) {
-                    binding.editTextPassword.setText("password");
+                    binding.editTextPassword.setText(R.string.password);
                     binding.editTextPassword.setTextColor(ContextCompat.getColor(this, R.color.red));
                     binding.editTextPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                 }
@@ -106,23 +128,37 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
                 registrationViewModel.setRegistrationDate(name, surname, password);
-                Log.d("MainActivity", "add data");
-                setNewFragment(parentFragment);
+                SuccessScreenFragment successFragment = SuccessScreenFragment.newInstance(name, surname);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, successFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
+
+
         });
     }
+    private void checkFieldsAndToggleCheckmark() {
+        String name = binding.editTextName.getText().toString().trim();
+        String surname = binding.editTextSername.getText().toString().trim();
+        String password = binding.editTextPassword.getText().toString().trim();
 
+        if (!name.isEmpty()) {
+            binding.imNameChecked.setVisibility(View.VISIBLE);
+        } else {
+            binding.imNameChecked.setVisibility(View.GONE);
+        }
+
+        if (!surname.isEmpty()) {
+            binding.imSernameChecked.setVisibility(View.VISIBLE);
+        } else {
+            binding.imSernameChecked.setVisibility(View.GONE);
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
         binding = null;
     }
 
-    private void setNewFragment(Fragment fragment) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        Log.d("MainActivity", "Replacing fragment...");
-        ft.replace(R.id.frameLayout, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
 }
