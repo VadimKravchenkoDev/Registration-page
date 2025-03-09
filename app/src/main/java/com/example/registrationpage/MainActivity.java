@@ -77,21 +77,21 @@ public class MainActivity extends AppCompatActivity {
         binding.editTextName.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.editTextName.setTextColor(ContextCompat.getColor(this, R.color.black));
-                if(binding.editTextName.getText().toString().equals("name")){binding.editTextName.setText("");}
+                if(binding.editTextName.getText().toString().equals(getString(R.string.name))){binding.editTextName.setText("");}
             }
         });
 
         binding.editTextSername.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.editTextSername.setTextColor(ContextCompat.getColor(this, R.color.black));
-                if(binding.editTextSername.getText().toString().equals("surname")){binding.editTextSername.setText("");}
+                if(binding.editTextSername.getText().toString().equals(getString(R.string.surname))){binding.editTextSername.setText("");}
             }
         });
 
         binding.editTextPassword.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.editTextPassword.setTextColor(ContextCompat.getColor(this, R.color.black));
-                if(binding.editTextPassword.getText().toString().equals("password")){binding.editTextPassword.setText("");}
+                if(binding.editTextPassword.getText().toString().equals(getString(R.string.password))){binding.editTextPassword.setText("");}
             }
         });
 
@@ -103,17 +103,17 @@ public class MainActivity extends AppCompatActivity {
                 String errorMessage = RegistrationValidator.getErrorMessage(MainActivity.this, name, surname, password);
 
                 if (name.isEmpty()) {
-                    binding.editTextName.setText("name");
+                    binding.editTextName.setText(R.string.name);
                     binding.editTextName.setTextColor(ContextCompat.getColor(this, R.color.red));
                 }
 
                 if (surname.isEmpty()) {
-                    binding.editTextSername.setText("surname");
+                    binding.editTextSername.setText(R.string.surname);
                     binding.editTextSername.setTextColor(ContextCompat.getColor(this, R.color.red));
                 }
 
                 if (password.isEmpty()) {
-                    binding.editTextPassword.setText("password");
+                    binding.editTextPassword.setText(R.string.password);
                     binding.editTextPassword.setTextColor(ContextCompat.getColor(this, R.color.red));
                     binding.editTextPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                 }
@@ -131,13 +131,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("MainActivity", "add data");
                 setNewFragment(parentFragment);
             }
+
+
         });
     }
     private void checkFieldsAndToggleCheckmark() {
         String name = binding.editTextName.getText().toString().trim();
         String surname = binding.editTextSername.getText().toString().trim();
         String password = binding.editTextPassword.getText().toString().trim();
-        
+
         if (!name.isEmpty()) {
             binding.imNameChecked.setVisibility(View.VISIBLE);
         } else {
