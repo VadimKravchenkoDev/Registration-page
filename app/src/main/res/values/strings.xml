@@ -10,6 +10,8 @@
     <string name="hint_password">Enter your password</string>
     <string name="error_message">All fields must be completed</string>
     <string name="switch_text">Are you over 18 years old?</string>
+    <string name="welcome">Welcome</string>
+    <string name="pers_info">Personal Information</string>
 
 
 </resources>
