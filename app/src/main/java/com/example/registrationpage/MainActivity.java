@@ -7,6 +7,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,25 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                checkFieldsAndToggleCheckmark();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        };
+
+        // Назначаем TextWatcher всем трём полям
+        binding.editTextName.addTextChangedListener(textWatcher);
+        binding.editTextSername.addTextChangedListener(textWatcher);
+        binding.editTextPassword.addTextChangedListener(textWatcher);
+
+
         RegistrationViewModelFactory factory = new RegistrationViewModelFactory(getApplicationContext());
         registrationViewModel = new ViewModelProvider(this, factory).get(RegistrationViewModel.class);
         RegistrationData registrationData = new RegistrationData(registrationViewModel);
@@ -54,32 +74,12 @@ public class MainActivity extends AppCompatActivity {
         binding.imageCloseEye.setOnClickListener(v -> registrationData.onImageClick());
         binding.imageOpenEye.setOnClickListener(v -> registrationData.onImageClick());
 
-        /*binding.editTextName.setOnFocusChangeListener((v, hasFocus) -> {
+        binding.editTextName.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.editTextName.setTextColor(ContextCompat.getColor(this, R.color.black));
                 if(binding.editTextName.getText().toString().equals("name")){binding.editTextName.setText("");}
             }
-        });*/
-
-        binding.editTextName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                binding.editTextName.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.black));
-                if(binding.editTextName.getText().toString().equals("name")){binding.editTextName.setText("");}
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
         });
-
 
         binding.editTextSername.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
@@ -133,7 +133,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void checkFieldsAndToggleCheckmark() {
+        String name = binding.editTextName.getText().toString().trim();
+        String surname = binding.editTextSername.getText().toString().trim();
+        String password = binding.editTextPassword.getText().toString().trim();
+        
+        if (!name.isEmpty()) {
+            binding.imNameChecked.setVisibility(View.VISIBLE);
+        } else {
+            binding.imNameChecked.setVisibility(View.GONE);
+        }
 
+        if (!surname.isEmpty()) {
+            binding.imSernameChecked.setVisibility(View.VISIBLE);
+        } else {
+            binding.imSernameChecked.setVisibility(View.GONE);
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

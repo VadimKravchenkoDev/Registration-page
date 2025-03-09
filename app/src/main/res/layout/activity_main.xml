@@ -63,13 +63,12 @@
         android:id="@+id/im_name_checked"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/editText_name"
         app:layout_constraintEnd_toEndOf="@+id/editText_name"
         app:layout_constraintTop_toTopOf="@+id/editText_name"
-        android:layout_marginRight="10dp"
-        app:srcCompat="@drawable/checked"
-        android:visibility="visible"
-        />
+        app:srcCompat="@drawable/checked" />
 
     <!--Surname block -->
     <TextView
@@ -91,13 +90,12 @@
         android:id="@+id/im_sername_checked"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/editText_sername"
         app:layout_constraintEnd_toEndOf="@+id/editText_sername"
         app:layout_constraintTop_toTopOf="@+id/editText_sername"
-        android:layout_marginRight="10dp"
-        app:srcCompat="@drawable/checked"
-        android:visibility="visible"
-        />
+        app:srcCompat="@drawable/checked" />
 
     <!--Password block -->
     <TextView
