@@ -128,8 +128,11 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
                 registrationViewModel.setRegistrationDate(name, surname, password);
-                Log.d("MainActivity", "add data");
-                setNewFragment(parentFragment);
+                SuccessScreenFragment successFragment = SuccessScreenFragment.newInstance(name, surname);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, successFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
 
 
@@ -158,11 +161,4 @@ public class MainActivity extends AppCompatActivity {
         binding = null;
     }
 
-    private void setNewFragment(Fragment fragment) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        Log.d("MainActivity", "Replacing fragment...");
-        ft.replace(R.id.frameLayout, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
 }
